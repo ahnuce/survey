@@ -1,21 +1,92 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Survey</title>
+    <style>
+      body{
+        background-color: black;
+        color: white;
+        border: solid;
+    
+      }
+      #submit {
+        text-align: center;
+      }
+
+    </style>
+    <script type="text/javascript">
+    function clickAlert() {
+     alert("You did it!");
+ }
+
+ function WriteToFile(passForm) {
+      var fso = new ActiveXObject("Scripting.FileSystemObject");
+      var fileLoc = "D:\\sample.csv";
+      var file = fso.CreateTextFile(fileLoc, true);
+      file.writeline(passForm.FirstName.value + ',' +
+                     passForm.LastName.value);
+      file.Close();
+      alert('File created successfully at location: ' + fileLoc);
+     }
+    </script>
   </head>
   <body>
+    <h1>ANUSONE'S SURVEY OF GREATNESS</h1>
     <div class="container">
-      <form class="form-horizontal" action="index.html" method="post">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-10">
-              <input type="email" value="email" class="form-control">
+      <div class="form-group">
+        <label for="usr">Name: </label><br>
+        <input type="text" class="form-control" required="true" style="width:250px;">
+      </div>
+      </div>
 
-            </div>
+    <form class="form-group" action="index.html" method="post">
+        <div class="form-group">
+          <label for="email">Email: </label><br>
+          <input type="email" class="form-control" required="true" pattern=".+@intracitygeeks.com" title="Please enter your intracitygeeks email" placeholder="username@intracitygeeks.com" style="width:250px;">
         </div>
 
-      </form>
+      <div class="form-group">
+        <label for="usr">Age:</label><br>
+        <input type="number" class="form-control" style="width:250px;" min="0" max="100">
+      </div>
+
+      <label for="text">Do you like developing?</label>
+      <div class="radio" required="true">
+        <label><input type="radio" name="optradio">Yes</label>
+      <div class="radio">
+        <label><input type="radio" name="optradio">No</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Maybe</label>
+      </div>
+      </div>
+      <div class="checkbox">
+        <label>Is this survey legit?</label></label>
+        <label><input type="checkbox" value="">Yes</label>
+        <label><input type="checkbox" value="">No</label>
+        <label><input type="checkbox" value="">Maybe</label>
+      </div>
+
+      <div class="form-group">
+        <label for="sel1">Rate this survey</label>
+        <select class="form-control" id="sel1">
+          <option>1 [Sucky]</option>
+          <option>2 [Kind of bad]</option>
+          <option>3 [Not bad]</option>
+          <option>4 [Pretty good]</option>
+          <option>5 [Unbelievable]</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Drop some lyrical bars about developing:</label>
+        <textarea rows="8" cols="40"></textarea>
+      </div>
+      <div id="submit">
+        <button type="submit" class="btn btn-default" onclick="clickAlert()" onsubmit="WriteToFile(this.form)">Submit</button>
+      </div>
+    </form>
 
       </div>
 
